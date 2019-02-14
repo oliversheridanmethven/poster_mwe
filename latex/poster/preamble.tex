@@ -1,0 +1,185 @@
+\usepackage[export]{adjustbox} % Nice alternative to minipage.
+\usepackage{afterpage} % To give the title page its own geometry.
+\usepackage{amsmath} % Nice maths symbols.
+\usepackage{amssymb} % Nice variable symbols.
+\usepackage{array} % Allow for custom column widths in tables.
+\usepackage{ltablex} % For long tables spanning multiple pages. % Must be before ARYDSHLN package!
+\keepXColumns % Keeps the X column
+\usepackage{colortbl} % Gives table colours. % Must be before ARYDSHLN package!
+\usepackage{arydshln} % Dashed lines using \hdashline \cdashline
+\usepackage{bbm} % Gives Blackboard fonts.
+\usepackage{blindtext} % Gives dummy text / maths.
+\usepackage{bm} % Bold math symbols.
+\usepackage{calc} % Calculates widths of words. 
+\usepackage{chngcntr} % Changing counters, e.g. with footnotes.
+\usepackage[final]{draftwatermark} % Gives a draft overlay. Use options [nostamp] or [final].
+\usepackage{emptypage} % Empty pages have no headers and footers.
+\usepackage[shortlabels]{enumitem} % Nice listing options in itemize and enumerate.
+\usepackage{esdiff} % Gives nice differential operators.
+\usepackage{esvect} % Gives nice vector arrows.
+%\usepackage{fancyhdr} % Nice headers.
+\usepackage{float} % Nice figure placement.
+\usepackage[T1]{fontenc} % Nice range of text characters and accents.
+\usepackage[bottom]{footmisc} % Nice footnote formatting.
+\usepackage{graphicx} % Include figures.
+%\usepackage[notquote]{hanging} % For indenting later lines in a paragraph. USE the 'noquote' option else the `'` is overwritten, and breaks in maths mode!
+\usepackage{ifoddpage} % Checks for odd or even page.
+%\usepackage{imakeidx} % Makes the index.
+\usepackage{indentfirst} % Indents the first paragraph.
+\usepackage{letltxmacro} % For defining a nice SQRT symbol.
+\usepackage{lipsum} % Useful for adding jargon.
+%\usepackage{listings} % The listings package for code.
+\usepackage{lmodern} % Load a font with all the characters
+\usepackage{marginnote} % For nice margin notes.
+\usepackage{mathtools} % Gives the colon equals symbol.
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode} % Inports Listings package ideal for MATLAB.
+\usepackage[framemethod=tikz]{mdframed} % Gives nices boxed and sidesrules.
+\usepackage{multirow} % Nice table cells spanning many rows.
+\usepackage{multicol} % If I want to use multiple columns.
+\usepackage[numbers, sort&compress]{natbib} % Nice references.
+\usepackage{nicefrac} % Gives nice fractions for superscripts.
+%\usepackage{nomencl} % Gives a symbol nomenclature. 
+\usepackage[super]{nth} % Gives nice ordinal superscripts, eg 1st, 2nd, etc.
+%\usepackage{parskip} % Gives nicer indenting.
+\usepackage{physics} % Nice partial derivatives and BRAKET notation.
+\usepackage{ragged2e} % For nice allignment.
+%\usepackage[norefs]{refcheck} % Can show any unused references.
+\usepackage{romannum} % Nice typing for roman numerals.
+\usepackage{setspace} % Ideal for increasing line spacing. E.g.  \doublespacing
+\usepackage{siunitx} % Nice formating of units.
+\usepackage{sidenotes} % Nice margin figures and margin tables. 
+\usepackage{subcaption} % Side by side figures.
+\usepackage[textsize=tiny]{todonotes} % A nice TODO list. [disable] to supress.
+\usepackage{tikz} % Nice diagrams.
+%\usepackage[nottoc]{tocbibind} % Gives nices Table of Contents
+%\usepackage[table]{xcolor} % This is useful for making greyed table cells, nice for headers. Known preamble placement issues.
+\usepackage{wasysym} % Gives some nice misc symbols, such as markers.
+\usepackage{wrapfig} % Allows wrapping text around figures. 
+\usepackage{xifthen}% Provides \isempty test.
+\usepackage{xparse} % Gives \NewDocumentEnvironment which has nice optional argument handling.
+\usepackage{xspace} % Gives nice spacing for commands.
+%%%% Generally HYPERREF should be imported last. %%%%
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black,anchorcolor=black]{hyperref} % Colour links.
+%%%% Should be loaded after hyperref. %%%%
+\usepackage{cleveref} % Gives smart referencing. %% After Hyperref
+\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash,figurewithin=section,tablewithin=section]{caption} % Caption figures and tables nicely. %% After cleveref.
+%\usepackage{geometry} % Use nice margins. Does give a small change in the default page margins. 
+
+% Enable dummy maths
+\blindmathtrue
+
+
+%\hbadness=10000 % Supresses bad box warnings
+
+% Where to search for figures. 
+\graphicspath{{../../figures/}{../../figures/hardware/}{../../figures/inverse_cdf/}{../../figures/logos/}{../../papers/}{../../figures_remote/}}
+
+% Present the references in the order they are used.
+\bibliographystyle{unsrtnattruncated}
+% Reduce spacing between references. 
+\setlength{\bibsep}{0pt plus 0.3ex}
+
+
+% Listing -> Code in environment labels.
+\renewcommand{\lstlistingname}{Code}
+
+% Nice paragraph indents.
+%\setlength{\parindent}{15mm}
+
+% Giving the references the right title.
+\renewcommand{\bibname}{References}
+
+% Removes hyphenation
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% To change the spacing in lists
+\setlist{noitemsep} % or \setlist{noitemsep} to leave space around whole list
+%\setenumerate{itemsep=-0.4em,topsep=0.5em} % Seems to look nice.
+
+% Custom column widths using C{2cm}, L, R, etc.
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% Gives a nice column separation in multicolumn mode.
+\setlength{\columnsep}{5mm}
+
+% Figure environment for use in multicolumn. To put in captions use \captionof{figure}{content of caption}.
+\newenvironment{Figure}
+{\par\medskip\noindent\minipage{\linewidth}}
+{\endminipage\par\medskip}
+
+% Gives the nice SQRT symbol.
+\makeatletter
+\let\oldr@@t\r@@t
+\def\r@@t#1#2{%
+	\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+	\advance\dimen0-0.2\ht0
+	\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+	{\box0\lower0.4pt\box2}}
+\LetLtxMacro{\oldsqrt}{\sqrt}
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
+\makeatother
+
+\DeclareMathOperator{\sign}{sign}
+%\DeclareMathOperator{\erf}{erf}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+% Number equations down to the subection level, e.g. 1.2.3 is the third equation in
+% subsection 2 of section 1.
+%\numberwithin{equation}{section}
+\newcommand*\tageq{\refstepcounter{equation}\tag{\theequation}}
+
+% Nice spacing in the first row of a table
+\newcommand{\firstrowspacing}{\rule{0pt}{2.6ex}}
+% For a more open look in tables.
+\setlength\extrarowheight{3pt} 
+
+% Some corporate names we may need to append a \textsuperscript{\textregistered} into. 
+\newcommand{\nag}{NAG\xspace}
+\newcommand{\arm}{Arm\xspace}
+\newcommand{\intel}{Intel\xspace}
+\newcommand{\amd}{AMD\xspace}
+\newcommand{\ibm}{IBM\xspace}
+\newcommand{\nvidia}{NVIDIA\xspace}
+\newcommand{\icdf}{inverse cumulative density function\xspace}
+\newcommand{\rng}{random number generator\xspace}
+
+
+% Gives a nice quote environment.
+\NewDocumentEnvironment{myquote}{O{}}{%
+	\begin{center}
+		\begin{minipage}{0.85\linewidth}
+			\vspace{1ex}
+			\centering \itshape \justifying}
+		{%
+			\ifthenelse{\isempty{#1}}{}{
+			\begin{flushright}%The author/source.
+				\normalfont #1
+			\end{flushright}}
+						\vspace{1ex}
+		\end{minipage}
+	\end{center}
+}
+
+% Gives a nice siderule environment. e.g. \begin{siderules}
+\newmdenv[topline=false,bottomline=false,rightline=false,skipabove=\topsep,skipbelow=\topsep]{siderules}
+
+% For a numbered and description. Use inside enumerate, \litem{Something} etc. 
+\newcommand\litem[1]{\item{\textit{#1} \\ \hfill \vspace*{-1.5ex} \\ \indent}}
+
+% Nice spacing in lists
+%\setlist{listparindent=\parindent,parsep=1ex} 
+
+% Gives a nice draft text.
+\SetWatermarkScale{2.0}
+\SetWatermarkLightness{0.9}
+
+% The oxford comma from cref for multiple citations. 
+\newcommand{\creflastconjunction}{, and\nobreakspace}
+
+\definecolor{oxford_blue}{RGB}{14,31,71}
+\definecolor{oxford_border}{RGB}{14,31,71}

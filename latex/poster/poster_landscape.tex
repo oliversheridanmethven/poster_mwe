@@ -1,0 +1,300 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[a0paper,landscape,fontscale=0.35]{baposter}
+
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{graphicx,subcaption}
+
+\usepackage{relsize}
+\usepackage{natbib}
+
+\usepackage{microtype}
+
+%%% Define a caption font
+\newcommand{\mycaption}[1]{
+  {
+    \smaller
+    \emph{#1}
+  }
+}
+
+%%% Color Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{oxford_blue}{RGB}{14,31,71}
+\definecolor{oxford_border}{RGB}{14,31,71}
+
+\begin{document}
+\typeout{Poster rendering started}
+
+\begin{poster}
+{
+    % Show grid to help with alignment
+    grid=false,
+    % Column spacing
+    colspacing=0.7em,
+    % Color style
+    %headerColorOne=cyan!20!white!90!black,
+    %borderColor=cyan!30!white!90!black,
+    headerColorOne=oxford_blue,
+    borderColor=oxford_border,
+    headerFontColor=white,
+    % Format of textbox
+    textborder=faded,
+    % Format of text header
+    headerborder=open,
+    headershape=roundedright,
+    headershade=plain,
+    background=none,
+    bgColorOne=cyan!10!white,
+    headerheight=0.12\textheight
+}
+% Eye Catcher: Oxford logo and personal picture
+{
+  \makebox[0.23\textwidth]{
+    \begin{tabular}{cc}
+    \includegraphics[height=0.10\textheight]{./img/oxlogo}
+      &
+    \includegraphics[height=0.10\textheight]{./img/profile}
+    \end{tabular}
+    \hfill
+  }
+}
+%%% Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\textsc{Price-management under uncertainty}
+}
+%%% Authors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+  \vspace{0.5em}
+  Asbj{\o}rn Nilsen Riseth --- \texttt{riseth@maths.ox.ac.uk}\\[0.1em]
+  { Mathematical Institute, University of Oxford}
+}
+%%% InFoMM Logo %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+  \makebox[0.23\textwidth]{
+    \includegraphics[height=0.10\textheight]{./img/InFoMM}
+  }
+}
+
+\headerbox{How do you decide the price of your products?}{name=introduction,span = 2,column=0,row=0}{
+  \begin{minipage}[h]{.7\textwidth}
+    Retail managers must decide the prices of hundreds of products
+    based on company policy, revenue and profit maximisation. We will
+    \begin{itemize}
+    \item model the demand dependence on price changes to aide in
+      the decision making process,
+    \item argue for a multiobjective or ``soft'' view of constraints,
+    \item define a concise framework for decision making under uncertainty.
+    \end{itemize}
+
+    Given a product unit price, $P$, and product demand per unit time,
+    $V(P)$, the \emph{elasticity} $\beta$ represents how demand
+    changes with price \citep{ryzin2012}. If we assume constant
+    elasticity, then
+    \begin{align}
+      V(P) = \alpha P^\beta,
+      &&\text{where } \beta = \frac{\mathrm d V/V}{\mathrm d P/P}.
+    \end{align}
+    The scale factor $\alpha$ can be used to incorporate
+    time-dependent factors like seasonality. The price of one product
+    can affect demand for other products, which is modelled similarly
+    with \emph{cross-elasticities.}
+    Revenue and profit are central to businesses, and are defined per
+    item as
+    \begin{align}
+      \mbox{Revenue}(P) &= PV(P),\\
+      \mbox{Profit}(P) &= (P-C)V(P),& \text{given \emph{marginal cost} C}
+    \end{align}
+  \end{minipage}%
+  \begin{minipage}[h]{.3\textwidth}
+    \centering
+    \includegraphics[width=0.85\textwidth]{./img/single_revenue}
+    \\[0.5em]
+    \includegraphics[width=0.85\textwidth]{./img/multiple_profit}\\
+    \mycaption{Total profit for two products}
+  \end{minipage}%
+}
+
+\headerbox{Multiobjective optimisation}
+{name=multiobjective, column=0, below=introduction, above=bottom, span=2}
+{
+  \begin{minipage}[h]{0.7\textwidth}
+    Typical business decisions aim to optimise an objective $f_1(x)$,
+    given a target $f_2(x)$. Maximising revenue without sacrificing too
+    much profit can be expressed in a general optimisation form. Given
+    prices $S\subset \mathbb R^n$, define
+    $f_1(x) = -\sum_i \mbox{Revenue}_i(x)$, $f_2(x) =
+    \nobreak Pr_{\min}-\nobreak \sum_i\mbox{Profit}_i(x)$, and solve
+    \begin{align}
+      \min_{x\in S}\{f_1(x)\mid f_2(x)\leq 0\}.
+    \end{align}
+
+    Constraints should be viewed as objectives, to emphasise that
+    tradeoffs are being made.
+    Given objectives $f_1,f_2$,
+    a \emph{Pareto optimal} point $x^*\in S$ is one such
+    that there are no feasible $x$ that can improve one objective
+    without sacrificing the other. The set of all such points is
+    called the \emph{Pareto front}. Active constraints force your
+    position on the front.\\
+    % With an active constraint
+    % $Pr_{min}$, the decision maker has implicitly created a bi-objective
+    % optimisation problem and chosen a position on the Pareto front.
+
+    \begin{minipage}{\textwidth}
+      \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.7\textwidth]{./img/pareto_prof_rev_ws}\\
+        \mycaption{Weighted Sum, 15 points. Overlaps}
+      \end{minipage}%
+      \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.7\textwidth]{./img/pareto_prof_rev_nbi}\\
+        \mycaption{NBI method, 15 points. Uniform spacing}
+      \end{minipage}
+    \end{minipage}
+  \end{minipage}%
+  \begin{minipage}[h]{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.85\textwidth]{./img/pareto_drawing}
+    \\[0.5em]
+    \includegraphics[width=0.85\textwidth]{./img/nbi_drawing2}\\
+    \mycaption{NBI subproblem}
+  \end{minipage}\\[1em]
+
+  Single-objective reformulations of the problem can be used to
+  trace out the Pareto front.
+  \begin{itemize}
+  \item \emph{Weighted Sum} associates a relative importance weighting
+    $\lambda$ with one
+    objective. It has issues including a nonlinear decision
+    response in $\lambda$,
+    the same decision is made with different weights, and
+    it cannot find concave regions of the front.
+  \item The \emph{Normal Boundary Intersection} method
+    \citep{das1998normal}
+    generates a uniformly spaced set of Pareto points by moving
+    in a direction $\hat n$ away from the \textcolor{red}{convex hull of individual minima},
+    generated by the matrix $\Phi$ with columns $F(x_i^*)-F^*$.
+  \end{itemize}
+  \vspace{-0.8em}
+  \begin{align}
+    &
+      \min_{x\in S}\{\lambda f_1(x)+(1-\lambda)f_2(x)\}
+    &
+      \max_{x\in S, t\in \mathbb R} \{t\mid \Phi\beta+t\hat n =
+      F(x)-F^*\}
+    &
+  \end{align}
+}
+
+\headerbox{Decisions that depend on future events}
+{name=uncertainty, column=2, row=0, span=2}
+{
+  \begin{minipage}[h]{0.7\textwidth}
+    With incomplete information about our system, we model the
+    uncertainty with random variables. This raises questions like:
+    \begin{itemize}
+    \item How do we make a preference ordering between choices? The
+      objective has several outcomes for each decision.
+    \item What does feasibility mean? Violations of constraints
+      are only known after we make our decision.
+    \end{itemize}
+    A motivating example in retail is the uncertainty of marginal cost
+    for products. Calculations dependent on cost can appear in
+    both the objective and the constraints.
+    We make the problem deterministic with \emph{risk measures},
+    functionals that represents the decision maker's attitude to risk.
+    With the viewpoint of constraint violations as tradeoffs, this
+    allows us to define feasibility in terms of the risk measure.
+  \end{minipage}%
+  \begin{minipage}[h]{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.85\textwidth]{./img/single_profit_multiple_costs}\\
+    \mycaption{Profit depends on uncertain cost}
+  \end{minipage}\\[1em]
+
+  \begin{minipage}[h]{\textwidth}
+    We can for example balance optimising
+    expected value and minimising the standard deviation.
+    This ensures a decision is sufficiently stable, and that we are
+    within a safe distance from violating constraints. The balance
+    between expected value and stability fits naturally in the
+    multiobjective framework. The following plots show results from
+    maximising profit of two products:
+    \\[0.7em]
+    \begin{minipage}{\textwidth}
+      \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[height=0.15\textheight]{./img/pareto_std_prof_2}\\
+        \mycaption{Pareto front with Weighted Sum}
+      \end{minipage}%
+      \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[height=0.15\textheight]{./img/profit_distribution_2}\\
+        \mycaption{Distributions of profit, assuming costs are Gaussian}
+      \end{minipage}
+    \end{minipage}
+  \end{minipage}\\[1em]
+
+  \begin{minipage}[h]{0.7\textwidth}
+    Standard deviation penalises better-than-average outcomes, and
+    does not take into account how much we violate constraints.
+    \emph{Conditional Value at Risk} ($\mbox{CVaR}_\alpha$) solves these issues by
+    calculating the expected loss of the worst $1-\alpha$ proportion
+    of outcomes \citep{rockafellar2007coherent}.
+    \begin{align}
+      \mbox{CVaR}_\alpha(X) &= \mathbb E[X\mid X\geq F_X^{-1}(\alpha)],
+      & F_X \text{~is the c.d.f.~of X.}
+    \end{align}
+    CVaR is continuous in $\alpha$ and cover risk attitudes from
+    neutral to worst-case scenarios.
+    \begin{align}
+      \lim_{\alpha\to0}\mbox{CVaR}_\alpha(X)&=\mathbb E[X]
+      & \text{risk-neutral}\\
+      \lim_{\alpha\to1}\mbox{CVaR}_\alpha(X) &= \sup X
+      & \text{worst-case}
+    \end{align}
+  \end{minipage}%
+  \begin{minipage}[h]{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.90\textwidth]{./img/cvar_tail_drawing}\\
+    \mycaption{Conditional Value at Risk takes tail risk into account}
+  \end{minipage}
+}
+
+\headerbox{Further work}
+{name=furtherwork, column=2, below=uncertainty, span=2}
+{
+  We want to model marginal costs as stochastic processes, and run
+  multi-week price optimisations based on real product data.
+  This will let us investigate how much decisions change with different
+  risk measures.
+}
+
+\headerbox{Acknowledgements}
+{name=acknowledgements, column=3, below=furtherwork, above=bottom, span=1}
+{
+    \vspace{1em}
+    \begin{center}
+      \begin{tabular}{cc}
+        \includegraphics[width=0.4\textwidth]{./img/epsrc_logo.eps}
+        &
+          \includegraphics[width=0.4\textwidth]{./img/company_logo.eps}
+      \end{tabular}
+    \end{center}
+}
+
+\headerbox{References}
+{name=references, column=2, below=furtherwork, above=bottom, span=1}
+{
+  \smaller                                  % Make the whole text smaller
+  \bibliographystyle{abbrv}                 % Use plain style
+  \renewcommand{\section}[2]{\vspace{0.05em}}	% Omit "References" title
+  \bibliography{references}
+}
+
+\end{poster}
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

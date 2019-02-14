@@ -1,0 +1,57 @@
+data/
+data_remote/
+data_arm/
+remote/
+source/cuda_examples/
+venv/
+papers/
+figures/
+.idea/
+build/
+bin/
+agreements_and_licenses/
+cmake-build-debug/
+
+
+# Compile related.
+*Makefile
+!source/gbm/Makefile
+
+# Coding based files. 
+*.pyc
+
+# Files which LaTeX generates. 
+*.aux
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.nlo
+*.nls
+*.out
+*.pdf
+*.snm
+*.synctex.gz
+*.tdo
+*.toc
+*.bcf
+*.xml
+*.lol
+*.thm
+
+# Mount points.
+mount_data.sh
+mount_remote.sh
+mount_mimic.sh
+
+gsl-2.4/
+exportToHTML/
+*.png
+*.odt
+*.odg
+*.docx
